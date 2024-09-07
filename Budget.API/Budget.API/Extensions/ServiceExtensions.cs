@@ -16,8 +16,9 @@ namespace Budget.API.Extensions
             });
         }
 
+
         public static void ConfigurePsqlContext(this IServiceCollection services, IConfiguration configuration) =>
-            services.AddDbContext<BudgetApiDBContext>(opts =>
-                                            opts.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<BudgetApiDBContext>(opts => opts.UseNpgsql(configuration.GetConnectionString("BudgetContext"),
+                b => b.MigrationsAssembly("Budget.API")));
     }
 }
